@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeParabox", "TimeParabox\TimeParabox.csproj", "{24752B0E-48C4-44AE-A8E6-4FCB585F0C1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recorder", "Recorder\Recorder.csproj", "{454C76DD-3985-40A2-99BD-B1CB21B69BEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24752B0E-48C4-44AE-A8E6-4FCB585F0C1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24752B0E-48C4-44AE-A8E6-4FCB585F0C1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24752B0E-48C4-44AE-A8E6-4FCB585F0C1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24752B0E-48C4-44AE-A8E6-4FCB585F0C1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{454C76DD-3985-40A2-99BD-B1CB21B69BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{454C76DD-3985-40A2-99BD-B1CB21B69BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{454C76DD-3985-40A2-99BD-B1CB21B69BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{454C76DD-3985-40A2-99BD-B1CB21B69BEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2C0005D-8D02-45BA-BDEF-8A7EDC189BD8}
+	EndGlobalSection
+EndGlobal

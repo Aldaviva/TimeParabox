@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net7.0-windows7.0": {
+      "Foregrounder": {
+        "type": "Direct",
+        "requested": "[0.0.1, )",
+        "resolved": "0.0.1",
+        "contentHash": "jaMMowUJsHjVVfr5s4HltdyKHmZJm3aJ1WEcK8k0JQKXl4tLTLh0I7KLlP0KS7sN/RXItVjGG+yt7nowOBs2WQ=="
+      },
+      "mwinapi": {
+        "type": "Direct",
+        "requested": "[0.3.0.5, )",
+        "resolved": "0.3.0.5",
+        "contentHash": "jb1ox29TMcxe0klNF5yui+ehXHUdEZOuykYaoGI9Okt0s7K5bNWxOzqsng0VVVvvFnW9wNfS4hWYOsE9Xup0GQ==",
+        "dependencies": {
+          "System.Management": "6.0.0"
+        }
+      },
+      "SimWinGamePad": {
+        "type": "Direct",
+        "requested": "[1.1.1, )",
+        "resolved": "1.1.1",
+        "contentHash": "X6bn3bg8vJb621hr7n6F4zSx1znLbo1DlGYvNeL1nY31ukJR0o6Isjnf72pMsBrK2VbINP++JWJ8iqv0TUKR7A=="
+      },
+      "System.CodeDom": {
+        "type": "Transitive",
+        "resolved": "6.0.0",
+        "contentHash": "CPc6tWO1LAer3IzfZufDBRL+UZQcj5uS207NHALQzP84Vp/z6wF0Aa0YZImOQY8iStY0A2zI/e3ihKNPfUm8XA=="
+      },
+      "System.Management": {
+        "type": "Transitive",
+        "resolved": "6.0.0",
+        "contentHash": "sHsESYMmPDhQuOC66h6AEOs/XowzKsbT9srMbX71TCXP58hkpn1BqBjdmKj1+DCA/WlBETX1K5WjQHwmV0Txrg==",
+        "dependencies": {
+          "System.CodeDom": "6.0.0"
+        }
+      }
+    },
+    "net7.0-windows7.0/win10-x64": {
+      "System.Management": {
+        "type": "Transitive",
+        "resolved": "6.0.0",
+        "contentHash": "sHsESYMmPDhQuOC66h6AEOs/XowzKsbT9srMbX71TCXP58hkpn1BqBjdmKj1+DCA/WlBETX1K5WjQHwmV0Txrg==",
+        "dependencies": {
+          "System.CodeDom": "6.0.0"
+        }
+      }
+    }
+  }
+}
