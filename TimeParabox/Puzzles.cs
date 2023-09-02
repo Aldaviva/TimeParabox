@@ -152,10 +152,45 @@ public static class Puzzles {
             new InterPuzzleMovement("vvv") { leadingDelay = hubCompletionDelay(1) }),
         new("Cycle",
             new InterPuzzleMovement("v<<<vv"),
+            new Puzzle(1, ">>>^^^>>>>>>vv<<<<^^vv>>>>^^>>>vv>>>>^^^"),
+            new Puzzle(2, ">vvv>>><>>>><<"),
+            new Puzzle(3, "vv<>^^^^^^^^^vvvvv<<^^<^^^>>>^^<<<^<<<<<<<<<<<<<<"),
+            new Puzzle(4, ">>>^^v<<<<<<<<<<<>>>>>^^vv<<<<<<<<>>>>>>^^<<"),
+            new Puzzle(5, "<<<v<^^^^^<^>^^<^^><vv>vvv>>^<v<^^<^>>>>><<<<^v>>>>^>>"),
+            new InterPuzzleMovement(">vvvv<"),
+            new Puzzle(8, "^>>^^^^^<vvvv>v<>>vvv>^^^<<<^>>^>vvvv>v<>>vvv^^<<<<"),
+            new InterPuzzleMovement("vv<"),
+            new Puzzle(11, ">>>>>>>>><<<^^^^^>>>><<^^^vvv<<<<<<>>^^^^"),
+            new Puzzle(12, "vv>>>vv<^>vv<^>vv<^>>"),
+            new Puzzle(13, "vvvvvvv^>>>>^^^^^^^^^^^vv<<<vvvvvv>>>^^^^^^^^^vvv<<<<^"),
+            new InterPuzzleMovement("vv>>v") { leadingDelay = hubCompletionDelay(3) }),
+        new("Player",
+            new InterPuzzleMovement("vv<<<<v"),
+            new Puzzle(1, "<<<vvv>>v>^>>vv"),
+            new Puzzle(2, "<<<vvv^^>>vv^^>vv^^^<<"),
+            new Puzzle(3, ">^^^^<<<<<v>v>vv<vv<<^^"),
+            new Puzzle(4, "<<>>>vv<<<>>>^^^^<<<>>>>vv"),
+            new Puzzle(5, "<<vvv>>>><<^<<v>>>><<^<<v>>>><<^<<v>>>><<<<<"),
+            new Puzzle(6, "^^<<^v>>>>^v<<^>vvv<^^^^"),
+            new Puzzle(7, ">>vv^^^^v<<<^vvvv>^^^<vvv>>>^^>>v^^^>>"),
+            new InterPuzzleMovement(">vvv<v"),
+            new Puzzle(9, "v<<>^^<<<<^<vvv>>>>>><<<^<"),
+            new InterPuzzleMovement("<v<"),
+            new Puzzle(12, "vvv>><<^<v^^<^>>>>^<<<v>>>^<<<v>>>^<<<v>>>^<<<v>>>>^>>v^<<v<<^>vv<^^>v<<<^>>>v<<<^>>><<<<<"),
+            new Puzzle(13, ">>^^^^vv<<<<<<<<^^^^^^>>>>>vvvvvvv>><<<"),
+            new Puzzle(14, "^^>^<<^<<<<vvvvvv>>>>v<<<<<>vv<<^^^^v>>>>>>^^vvv"),
+            new InterPuzzleMovement("v>v"),
+            new Puzzle(15, "vvvvv^>>>v<v>>>^^^^^^>v>^^^<<<<<<^>^<<<vvvvv<v"),
+            new InterPuzzleMovement(">>vv>"),
+            new Puzzle(18, "<^^<vvvv>^^^^vvvv>>^^^^vv>>>v<<^>><<<vv"),
+            new Puzzle(19, "vvv>v<<>>>^^<<<^<vv<v>>v>^^^<^>>"),
+            new InterPuzzleMovement("vvv") { leadingDelay = hubCompletionDelay(2) }),
+        new("Possess",
+            new InterPuzzleMovement("v>>>>vv"),
             new Puzzle(1, ""))
     }.AsReadOnly();
 
-    private static int hubCompletionDelay(int finalPuzzleClusterSize) {
+    internal static int hubCompletionDelay(int finalPuzzleClusterSize) {
         const int JUMP_OUT         = 1066;
         const int COUNTING_PUZZLES = 300;
         const int POPPING_BUBBLE   = 2717;

@@ -21,7 +21,7 @@ internal static class TimeParabox {
 
         Stopwatch stopwatch = Stopwatch.StartNew();
 
-        string? startingHubName     = "Open";
+        string? startingHubName     = "Possess";
         int?    startingPuzzleId    = null;
         bool    continueAfterPuzzle = true;
         bool    continueAfterHub    = false;
@@ -31,7 +31,7 @@ internal static class TimeParabox {
 
         foreach (Hub hub in Puzzles.HUBS.SkipWhile(hub => !ReferenceEquals(hub, startingHub))) {
             IEnumerable<ActionSequence> actionSequences = hub == startingHub && startingPuzzle != null
-                ? startingHub.actionSequences.SkipWhile(puzzle => !ReferenceEquals(puzzle, startingPuzzle))
+                ? hub.actionSequences.SkipWhile(puzzle => !ReferenceEquals(puzzle, startingPuzzle))
                 : hub.actionSequences;
 
             foreach (ActionSequence actionSequence in actionSequences) {
@@ -43,9 +43,16 @@ internal static class TimeParabox {
                 Console.WriteLine($"{hub.name} {(actionSequence as Puzzle)?.id.ToString() ?? "between puzzles"}: {actionSequence.actions}");
                 sendCommands(actionSequence.actions);
 
-                if (actionSequence.trailingDelay > 0) {
-                    Console.WriteLine($"Sleeping for {actionSequence.trailingDelay:N0} ms (trailing delay)");
-                    Thread.Sleep(actionSequence.trailingDelay);
+                int trailingDelay = actionSequence == hub.actionSequences.Last()
+                    ? Puzzles.hubCompletionDelay(hub.actionSequences
+                        .Reverse()
+                        .SkipWhile(sequence => sequence is InterPuzzleMovement)
+                        .TakeWhile(sequence => sequence is Puzzle).Count())
+                    : actionSequence.trailingDelay;
+
+                if (trailingDelay > 0) {
+                    Console.WriteLine($"Sleeping for {trailingDelay:N0} ms (trailing delay)");
+                    Thread.Sleep(trailingDelay);
                 }
 
                 if (!continueAfterPuzzle) {
