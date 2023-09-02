@@ -20,7 +20,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Foregrounder" Version="0.0.1" />
       <PackageReference Include="mwinapi" Version="0.3.0.5" />
       <PackageReference Include="SimWinGamePad" Version="1.1.1" />
     </ItemGroup>

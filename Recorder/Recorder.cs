@@ -57,6 +57,13 @@ internal static class Recorder {
                 case Keys.R:
                     ACTIONS.Add(InputAction.RESET);
                     break;
+                case Keys.B:
+                    lastIndex = ACTIONS.Count - 1;
+                    if (lastIndex != -1) {
+                        ACTIONS.RemoveAt(lastIndex);
+                    }
+
+                    break;
                 case Keys.N:
                     ACTIONS.Clear();
                     UNDO.Clear();

@@ -2,12 +2,6 @@
   "version": 1,
   "dependencies": {
     "net7.0-windows7.0": {
-      "Foregrounder": {
-        "type": "Direct",
-        "requested": "[0.0.1, )",
-        "resolved": "0.0.1",
-        "contentHash": "jaMMowUJsHjVVfr5s4HltdyKHmZJm3aJ1WEcK8k0JQKXl4tLTLh0I7KLlP0KS7sN/RXItVjGG+yt7nowOBs2WQ=="
-      },
       "mwinapi": {
         "type": "Direct",
         "requested": "[0.3.0.5, )",
