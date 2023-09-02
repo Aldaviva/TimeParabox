@@ -21,10 +21,10 @@ internal static class TimeParabox {
 
         Stopwatch stopwatch = Stopwatch.StartNew();
 
-        string? startingHubName     = "Possess";
-        int?    startingPuzzleId    = null;
+        string? startingHubName     = "Player";
+        int?    startingPuzzleId    = 1;
         bool    continueAfterPuzzle = true;
-        bool    continueAfterHub    = false;
+        bool    continueAfterHub    = true;
 
         Hub     startingHub    = startingHubName != null ? Puzzles.HUBS.First(hub => hub.name == startingHubName) : Puzzles.HUBS[0];
         Puzzle? startingPuzzle = startingPuzzleId != null ? startingHub.puzzles.First(puzzle => puzzle.id == startingPuzzleId) : null;
@@ -35,21 +35,21 @@ internal static class TimeParabox {
                 : hub.actionSequences;
 
             foreach (ActionSequence actionSequence in actionSequences) {
-                if (actionSequence.leadingDelay > 0) {
-                    Console.WriteLine($"Sleeping for {actionSequence.leadingDelay:N0} ms (leading delay)");
-                    Thread.Sleep(actionSequence.leadingDelay);
+                int leadingDelay = actionSequence == hub.actionSequences.Last() && actionSequence.leadingDelay == null
+                    ? Puzzles.hubCompletionDelay(hub.actionSequences
+                        .Reverse()
+                        .SkipWhile(sequence => sequence is InterPuzzleMovement)
+                        .TakeWhile(sequence => sequence is Puzzle).Count())
+                    : actionSequence.leadingDelay ?? 0;
+                if (leadingDelay > 0) {
+                    Console.WriteLine($"Sleeping for {leadingDelay:N0} ms (leading delay)");
+                    Thread.Sleep(leadingDelay);
                 }
 
                 Console.WriteLine($"{hub.name} {(actionSequence as Puzzle)?.id.ToString() ?? "between puzzles"}: {actionSequence.actions}");
                 sendCommands(actionSequence.actions);
 
-                int trailingDelay = actionSequence == hub.actionSequences.Last()
-                    ? Puzzles.hubCompletionDelay(hub.actionSequences
-                        .Reverse()
-                        .SkipWhile(sequence => sequence is InterPuzzleMovement)
-                        .TakeWhile(sequence => sequence is Puzzle).Count())
-                    : actionSequence.trailingDelay;
-
+                int trailingDelay = actionSequence.trailingDelay ?? 0;
                 if (trailingDelay > 0) {
                     Console.WriteLine($"Sleeping for {trailingDelay:N0} ms (trailing delay)");
                     Thread.Sleep(trailingDelay);
@@ -89,7 +89,7 @@ internal static class TimeParabox {
 
     private static void sendCommand(GamePadControl control) {
         SimGamePad.Instance.Use(control, holdTimeMS: INTRA_KEY_DELAY_MS);
-        Thread.Sleep(SLOW_MOTION ? 500 : INTER_KEY_DELAY_MS);
+        Thread.Sleep(SLOW_MOTION ? 250 : INTER_KEY_DELAY_MS);
     }
 
 }
