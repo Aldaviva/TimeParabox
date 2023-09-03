@@ -21,8 +21,8 @@ internal static class TimeParabox {
 
         Stopwatch stopwatch = Stopwatch.StartNew();
 
-        string? startingHubName     = "Player";
-        int?    startingPuzzleId    = 1;
+        string? startingHubName     = args.ElementAtOrDefault(0);
+        int?    startingPuzzleId    = args.ElementAtOrDefault(1) is { } rawPuzzleId ? int.Parse(rawPuzzleId) : null;
         bool    continueAfterPuzzle = true;
         bool    continueAfterHub    = true;
 
