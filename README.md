@@ -1,7 +1,7 @@
 TimeParabox
 ===
 
-![Run duration: 00:17:15.367](https://img.shields.io/badge/run%20duration-00%3A17%3A15.367-success) [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Aldaviva/TimeParabox/dotnet.yml?branch=master&logo=github)](https://github.com/Aldaviva/TimeParabox/actions/workflows/dotnet.yml)
+![Run duration: 00:17:15.367](https://img.shields.io/badge/run%20duration-00%3A17%3A15.367-success) [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Aldaviva/TimeParabox/dotnet.yaml?branch=master&logo=github)](https://github.com/Aldaviva/TimeParabox/actions/workflows/dotnet.yaml)
 
 Program that automates speedruns of [Patrick's Parabox](https://www.patricksparabox.com).
 
