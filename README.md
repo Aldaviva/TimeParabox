@@ -1,13 +1,17 @@
 TimeParabox
 ===
 
+![Run duration: 00:17:15.367](https://img.shields.io/badge/run%20duration-00%3A17%3A15.367-success) [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Aldaviva/TimeParabox/dotnet.yml?branch=master&logo=github)](https://github.com/Aldaviva/TimeParabox/actions/workflows/dotnet.yml)
+
 Program that automates speedruns of [Patrick's Parabox](https://www.patricksparabox.com).
 
-Solves 156 puzzles, a minimal set of puzzles to reach the credits. Does not use any glitches.
+Solves 156 puzzles, a minimal set to reach the credits. No game defects are exploited. (A glitchless any% TAS, in speedrunning jargon.)
 
-**Run duration:** 17m 15.367s
+Run duration is measured from the first input on the title screen to the last input before the credits.
 
 ## ▶ Watch
+
+### Run in 17m 15.367s
 [![Watch on YouTube](https://i.ytimg.com/vi_webp/wZ--hjWwByQ/maxresdefault.webp)](https://www.youtube.com/watch?v=wZ--hjWwByQ)
 
 ## Game settings
@@ -18,14 +22,14 @@ Solves 156 puzzles, a minimal set of puzzles to reach the credits. Does not use 
 
 ## Run
 1. Install [.NET 7 x64 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) or later
-2. Download the [latest TimeParabox release](https://github.com/Aldaviva/TimeParabox/releases/latest/download/TimeParabox.exe)
-3. Start Patrick's Parabox
-4. Choose a save file
-5. Set the [game settings](#game-settings)
-6. Go to the title screen, where it says "Start game" and "Menu"
-7. Run `TimeParabox.exe`
-    - On first run, allow the installation of ScpVBus by Scarlet.Crush Productions, which is a virtual gamepad driver
-    - To begin the run from a specific hub, go to the first square after entering the hub, and pass the hub's name as the first argument:
+1. Download the [latest TimeParabox release](https://github.com/Aldaviva/TimeParabox/releases/latest/download/TimeParabox.exe)
+1. Launch Patrick's Parabox
+1. Choose a save file
+1. Set the [game settings](#game-settings)
+1. Launch `TimeParabox.exe`
+    - On first run, allow the installation of ScpVBus by Scarlet.Crush Productions when prompted, which is a virtual gamepad driver
+    - To begin the run from the title screen, you don't need to pass any extra arguments
+    - To begin the run from a specific hub, move to the first square when entering the hub, and pass the hub's name as the first argument:
         ```bat
         TimeParabox.exe Possess
         ```
@@ -33,5 +37,6 @@ Solves 156 puzzles, a minimal set of puzzles to reach the credits. Does not use 
         ```bat
         TimeParabox.exe "Infinite Exit" 2
         ```
-8. Focus the game window
-9. To stop the speedrun program, focus its console window and press `Ctrl`+`C`
+1. Focus the game window
+1. This program will run the game
+1. To stop this program, focus its console window and press `Ctrl`+`C`
