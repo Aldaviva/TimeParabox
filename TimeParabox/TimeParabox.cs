@@ -6,8 +6,9 @@ namespace TimeParabox;
 
 internal static class TimeParabox {
 
-    private const int  INTER_KEY_DELAY_MS = 35;
-    private const int  INTRA_KEY_DELAY_MS = 35;
+    // 18 18 fails eventually
+    private const int  INTER_KEY_DELAY_MS = 17;
+    private const int  INTRA_KEY_DELAY_MS = 17;
     private const bool SLOW_MOTION        = false;
 
     public static void Main(string[] args) {
@@ -19,6 +20,14 @@ internal static class TimeParabox {
             Thread.Sleep(250);
         }
 
+        using (Process selfProcess = Process.GetCurrentProcess()) {
+            selfProcess.PriorityClass = ProcessPriorityClass.High;
+        }
+
+        using (Process gameProcess = Process.GetProcessesByName("Patrick's Parabox")[0]) {
+            gameProcess.PriorityClass = ProcessPriorityClass.High;
+        }
+
         Stopwatch stopwatch = Stopwatch.StartNew();
 
         string? startingHubName     = args.ElementAtOrDefault(0);
@@ -26,7 +35,7 @@ internal static class TimeParabox {
         bool    continueAfterPuzzle = true;
         bool    continueAfterHub    = true;
 
-        Hub     startingHub    = startingHubName != null ? Puzzles.HUBS.First(hub => hub.name == startingHubName) : Puzzles.HUBS[0];
+        Hub     startingHub    = startingHubName != null ? Puzzles.HUBS.First(hub => hub.name.Equals(startingHubName, StringComparison.CurrentCultureIgnoreCase)) : Puzzles.HUBS[0];
         Puzzle? startingPuzzle = startingPuzzleId != null ? startingHub.puzzles.First(puzzle => puzzle.id == startingPuzzleId) : null;
 
         foreach (Hub hub in Puzzles.HUBS.SkipWhile(hub => !ReferenceEquals(hub, startingHub))) {
@@ -59,6 +68,8 @@ internal static class TimeParabox {
                     break;
                 }
             }
+
+            Console.WriteLine($"{hub.name} done in {stopwatch.Elapsed:g}.");
 
             if (!continueAfterPuzzle || !continueAfterHub) {
                 break;
