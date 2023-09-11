@@ -6,17 +6,20 @@ namespace TimeParabox;
 
 internal static class TimeParabox {
 
-    // 18 18 fails eventually
-    private const int  INTER_KEY_DELAY_MS = 17;
-    private const int  INTRA_KEY_DELAY_MS = 17;
-    private const bool SLOW_MOTION        = false;
+    // 17 17 works (G7)
+    private const int  INTER_KEY_DELAY_MS    = 17;
+    private const int  INTRA_KEY_DELAY_MS    = 17;
+    private const bool SLOW_MOTION           = false;
+    private const bool CONTINUE_AFTER_HUB    = true;
+    private const bool CONTINUE_AFTER_PUZZLE = true;
 
     public static void Main(string[] args) {
         SimGamePad.Instance.Initialize();
         SimGamePad.Instance.PlugIn();
 
         Console.WriteLine("Waiting for Patrick's Parabox window to be in the foreground...");
-        while (!isGameWindow(SystemWindow.ForegroundWindow)) {
+        SystemWindow? gameWindow;
+        while (null == (gameWindow = getGameWindow(SystemWindow.ForegroundWindow))) {
             Thread.Sleep(250);
         }
 
@@ -24,16 +27,14 @@ internal static class TimeParabox {
             selfProcess.PriorityClass = ProcessPriorityClass.High;
         }
 
-        using (Process gameProcess = Process.GetProcessesByName("Patrick's Parabox")[0]) {
+        using (Process gameProcess = gameWindow.Process) {
             gameProcess.PriorityClass = ProcessPriorityClass.High;
         }
 
         Stopwatch stopwatch = Stopwatch.StartNew();
 
-        string? startingHubName     = args.ElementAtOrDefault(0);
-        int?    startingPuzzleId    = args.ElementAtOrDefault(1) is { } rawPuzzleId ? int.Parse(rawPuzzleId) : null;
-        bool    continueAfterPuzzle = true;
-        bool    continueAfterHub    = true;
+        string? startingHubName  = args.ElementAtOrDefault(0);
+        int?    startingPuzzleId = args.ElementAtOrDefault(1) is { } rawPuzzleId ? int.Parse(rawPuzzleId) : null;
 
         Hub     startingHub    = startingHubName != null ? Puzzles.HUBS.First(hub => hub.name.Equals(startingHubName, StringComparison.CurrentCultureIgnoreCase)) : Puzzles.HUBS[0];
         Puzzle? startingPuzzle = startingPuzzleId != null ? startingHub.puzzles.First(puzzle => puzzle.id == startingPuzzleId) : null;
@@ -64,14 +65,14 @@ internal static class TimeParabox {
                     Thread.Sleep(trailingDelay);
                 }
 
-                if (!continueAfterPuzzle) {
+                if (!CONTINUE_AFTER_PUZZLE) {
                     break;
                 }
             }
 
             Console.WriteLine($"{hub.name} done in {stopwatch.Elapsed:g}.");
 
-            if (!continueAfterPuzzle || !continueAfterHub) {
+            if (!CONTINUE_AFTER_PUZZLE || !CONTINUE_AFTER_HUB) {
                 break;
             }
         }
@@ -81,9 +82,7 @@ internal static class TimeParabox {
         SimGamePad.Instance.ShutDown();
     }
 
-    private static bool isGameWindow(SystemWindow window) {
-        return window is { Title: "Patrick's Parabox", ClassName: "UnityWndClass" };
-    }
+    private static SystemWindow? getGameWindow(SystemWindow window) => window is { Title: "Patrick's Parabox", ClassName: "UnityWndClass" } ? window : null;
 
     private static void sendCommands(string arrows) {
         foreach (char arrow in arrows) {
