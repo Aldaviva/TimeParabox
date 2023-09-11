@@ -10,7 +10,7 @@ public interface ActionSequence {
 
 public record Puzzle(int id, string actions): ActionSequence {
 
-    public int? leadingDelay { get; init; } = 200;
+    public int? leadingDelay { get; init; } = 50;
     public int? trailingDelay { get; init; } = 1700;
 
 }
